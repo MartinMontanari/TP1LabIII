@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Services\TimeDeposit\TimeDepositService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use PHPUnit\Framework\InvalidArgumentException;
 
 class MakeTimeDepositController extends Controller
 {
@@ -27,8 +26,7 @@ class MakeTimeDepositController extends Controller
 
     /**
      * @param Request $request
-     //* @return View
-     * @throws InvalidBodyException
+     * @return View
      */
     public function execute(Request $request)
     {
@@ -36,8 +34,8 @@ class MakeTimeDepositController extends Controller
             $command = $this->adapter->adapt($request);
             $timeDeposit = $this->service->MakeTimeDeposit($command);
             return view('finalBalance', ["deposit"=>$timeDeposit]);
-        }catch(InvalidArgumentException $errors){
-            redirect()->back()->withErrors([$errors]);
+        }catch(InvalidBodyException $errors){
+            return redirect()->back()->withErrors($errors->getMessages());
         }
     }
 }

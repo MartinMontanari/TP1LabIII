@@ -9,18 +9,23 @@ use Throwable;
  * Class InvalidBodyException
  * @package App\Exceptions
  */
-class InvalidBodyException extends \Exception
+class InvalidBodyException extends \Error implements Throwable
 {
-    private array $errorsArray;
-    public function __construct($message = ""|[], $code = 0, Throwable $previous = null)
+
+    /**
+     * @var array
+     */
+    private array $messages;
+
+    public function __construct($message = [])
     {
-        if(is_array($message)){
-            $this->errorsArray = $message;
-            $message= implode($message);
-        }
-        parent::__construct($message, $code, $previous);
+        $this->messages = $message;
+        parent::__construct();
     }
-    public function getMessagesArray() : array{
-        return $this->errorsArray;
+
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }
+

@@ -48,7 +48,7 @@ class TimeDepositAdapter
         $validate = Validator::make($request->all(), $this->rules, $this->messages);
 
         if ($validate->fails()) {
-            throw new InvalidBodyException($validate->errors()->getMessageBag());
+            throw new InvalidBodyException($validate->errors()->getMessages());
         } else {
             return new TimeDepositCommand(
                 $request->input('fullName'),

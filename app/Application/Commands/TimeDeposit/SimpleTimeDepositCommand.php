@@ -4,7 +4,7 @@
 namespace App\Application\Commands\TimeDeposit;
 
 
-class TimeDepositCommand
+class SimpleTimeDepositCommand
 {
     private string $fullName;
     private float $amount;

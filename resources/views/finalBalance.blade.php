@@ -8,8 +8,11 @@
     <title>Document</title>
 </head>
 <body>
-<p>{{  $deposit->getFullName() }}</p>
-<p>{{  $deposit->getFinalBalance() }}</p>
-
+<p>{{  $NewDeposit->getFullName() }}</p><br/>
+<p>{{ $NewDeposit->getAmount() }}</p><br/>
+<p>{{ $NewDeposit->getDays() }}</p>
+<p>{{  $NewDeposit->getFinalBalance() }}</p><br/>
+<input type="checkbox" name="confirm" value="true">
+<input type="submit" name="approve" >
 </body>
 </html>

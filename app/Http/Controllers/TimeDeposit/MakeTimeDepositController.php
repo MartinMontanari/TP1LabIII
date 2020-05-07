@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Services\TimeDeposit\TimeDepositService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class MakeTimeDepositController extends Controller
 {
@@ -33,9 +34,9 @@ class MakeTimeDepositController extends Controller
         try {
             $command = $this->adapter->adapt($request);
             $timeDeposit = $this->service->MakeTimeDeposit($command);
-            return view('finalBalance', ["deposit"=>$timeDeposit]);
+            return view('finalBalance', ["NewDeposit"=>$timeDeposit]);
         }catch(InvalidBodyException $errors){
-            return redirect()->back()->withErrors($errors->getMessages());
+            return redirect()->back()->withErrors($errors->getMessages())  ;
         }
     }
 }

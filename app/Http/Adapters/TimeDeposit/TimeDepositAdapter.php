@@ -4,7 +4,7 @@
 namespace App\Http\Adapters\TimeDeposit;
 
 
-use App\Application\TimeDeposit\TimeDepositCommand;
+use App\Application\Commands\TimeDeposit\SimpleTimeDepositCommand;
 use App\Exceptions\InvalidBodyException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -40,8 +40,7 @@ class TimeDepositAdapter
 
     /**
      * @param Request $request
-     * @return TimeDepositCommand
-     * @throws InvalidBodyException
+     * @return SimpleTimeDepositCommand
      */
     public function adapt(Request $request)
     {
@@ -50,10 +49,10 @@ class TimeDepositAdapter
         if ($validate->fails()) {
             throw new InvalidBodyException($validate->errors()->getMessages());
         } else {
-            return new TimeDepositCommand(
+            return new SimpleTimeDepositCommand(
                 $request->input('fullName'),
                 $request->input('amount'),
-                $request->input('days')
+                $request->input('days'),
             );
         }
     }

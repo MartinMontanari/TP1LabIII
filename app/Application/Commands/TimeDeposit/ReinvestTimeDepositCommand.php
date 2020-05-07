@@ -20,4 +20,43 @@ class ReinvestTimeDepositCommand
         $this->approve = $approve;
     }
 
+    /**
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * @return float
+     */
+    public function getFinalBalance(): float
+    {
+        return $this->finalBalance;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAmount(): float
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDays(): int
+    {
+        return $this->days;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isApprove(): bool
+    {
+        return $this->approve;
+    }
 }

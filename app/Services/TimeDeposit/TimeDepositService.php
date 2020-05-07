@@ -6,6 +6,7 @@ namespace App\Services\TimeDeposit;
 
 use App\Application\Commands\TimeDeposit\ReinvestTimeDepositCommand;
 use App\Application\Commands\TimeDeposit\SimpleTimeDepositCommand;
+use App\Domain\ValueObjects\ReinvestTimeDeposit;
 use App\Domain\ValueObjects\TimeDeposit;
 
 class TimeDepositService
@@ -20,6 +21,10 @@ class TimeDepositService
         $this->calculation = $newCalculation;
     }
 
+    /**
+     * @param SimpleTimeDepositCommand $command
+     * @return ReinvestTimeDeposit|TimeDeposit
+     */
     public function MakeTimeDeposit(SimpleTimeDepositCommand $command)
     {
         if ($command instanceof SimpleTimeDepositCommand) {
@@ -29,6 +34,10 @@ class TimeDepositService
         }
     }
 
+    /**
+     * @param SimpleTimeDepositCommand $command
+     * @return TimeDeposit
+     */
     private function DoSimpleTimeDeposit(SimpleTimeDepositCommand $command)
     {
         $days = $command->getDays();
@@ -52,7 +61,7 @@ class TimeDepositService
             for($i=1; $i<4; $i++){
                 $timeDeposits[]= $this->calculation->PerformCalculation($timeDeposits[$i-1]->getAmount(),$days);
             }
-            return new TimeDeposit($fullName,$timeDeposits);
+            return new ReinvestTimeDeposit($fullName,$timeDeposits,$days);
         }
     }
 }

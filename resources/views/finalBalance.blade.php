@@ -18,7 +18,6 @@
             <input name="confirm" type="checkbox" value="true">
         </label><br/>
         <input type="submit" name="approve" value="Reinvertir"><br/>
-
     </form>
     </body>
 </html>

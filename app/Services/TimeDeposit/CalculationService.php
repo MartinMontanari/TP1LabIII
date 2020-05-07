@@ -6,13 +6,21 @@ namespace App\Services\TimeDeposit;
 
 class CalculationService
 {
-
+    /**
+     * @param $amount
+     * @param $days
+     * @return float|int
+     */
     public function PerformCalculation($amount, $days)
     {
         $earningInterests = $this->getPercentageCalculationPerDay($days);
         return $finalBalance = $amount + ($amount * ($earningInterests / 100) * ($days / 360));
     }
 
+    /**
+     * @param int $days
+     * @return float
+     */
     private function getPercentageCalculationPerDay(int $days): float
     {
         switch ($days) {

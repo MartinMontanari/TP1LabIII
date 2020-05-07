@@ -23,20 +23,20 @@ class TimeDepositService
     public function MakeTimeDeposit(TimeDepositCommand $command)
     {
         if ($command instanceof TimeDepositCommand) {
-            return $this->DoTimeDeposit($command);
+            return $this->DoSimpleTimeDeposit($command);
         } else if ($command instanceof ReinvestTimeDepositCommand) {
             return $this->ReinvestTimeDeposit($command);
         }
     }
 
-    private function DoTimeDeposit(TimeDepositCommand $command)
+    private function DoSimpleTimeDeposit(TimeDepositCommand $command)
     {
         $days = $command->getDays();
         $amount = $command->getAmount();
         $fullName = $command->getFullName();
 
         $finalBalance = $this->calculation->PerformCalculation($amount, $days);
-        return new TimeDeposit($finalBalance, $fullName);
+        return new TimeDeposit($fullName,$amount,$finalBalance,$days);
     }
 
     private function ReinvestTimeDeposit(ReinvestTimeDepositCommand $command)

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Application\TimeDeposit;
+namespace App\Application\Commands\TimeDeposit;
 
 
 class TimeDepositCommand
@@ -10,7 +10,7 @@ class TimeDepositCommand
     private float $amount;
     private int $days;
 
-    public function __construct(string $fullName, bool $approve, float $amount, int $days)
+    public function __construct(string $fullName, float $amount, int $days)
     {
         $this->fullName = $fullName;
         $this->amount = $amount;

@@ -25,6 +25,9 @@ class TimeDepositService
         if ($command instanceof TimeDepositCommand) {
             return $this->DoTimeDeposit($command);
         }
+        else if($command instanceof ReinvestTimeDepositCommand){
+            return $this->DoTimeDeposit($command);
+        }
     }
 
     private function DoTimeDeposit(TimeDepositCommand $command)

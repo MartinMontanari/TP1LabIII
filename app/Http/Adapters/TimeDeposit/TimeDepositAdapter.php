@@ -15,10 +15,10 @@ class TimeDepositAdapter
      * @var string[]
      */
     private array $rules = [
-        'fullName' => 'required|alpha|min:6|max:220',
-        'amount' => 'numeric|required|min:1',
-        'days' => 'integer|required|min:30',
-        'confirm' => 'accepted|required'
+        'fullName' => 'bail|required|alpha|min:6|max:220',
+        'amount' => 'bail|required|numeric|min:1',
+        'days' => 'bail|required|integer|min:30',
+        'confirm' => 'bail|required|accepted'
     ];
     /**
      * @var string[]

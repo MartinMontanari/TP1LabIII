@@ -8,12 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body class="">
-<div class="align-content-center">
-    <div class="errors-container">
-        @foreach($errors->all() as $error)
-            <p>{{ $error }}</p>
-        @endforeach
-    </div>
+
 
     <div class="form-group">
         <form class="form-group" method="POST" action="{{ route('newTimeDeposit') }}" accept-charset="UTF-8"  enctype="multipart/form-data">
@@ -37,6 +32,12 @@
             <input class="btn btn-success" type="submit" value="Calcular">
         </form>
     </div>
+    <div class="align-content-center">
+        <div class="errors-container">
+            @foreach($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
 </div>
 </body>
 </html>

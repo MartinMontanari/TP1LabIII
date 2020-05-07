@@ -10,7 +10,7 @@ class TimeDepositCommand
     private float $amount;
     private int $days;
 
-    public function __construct(string $fullName, float $amount, int $days)
+    public function __construct(string $fullName, bool $approve, float $amount, int $days)
     {
         $this->fullName = $fullName;
         $this->amount = $amount;

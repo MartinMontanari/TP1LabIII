@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/','TimeDeposit\MakeTimeDepositController@execute')->name('newTimeDeposit');
+//Route::get('/finalBalance','TimeDeposit\MakeTimeDepositController@execute')->name('finalBalance');

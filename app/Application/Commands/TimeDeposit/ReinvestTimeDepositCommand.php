@@ -6,16 +6,14 @@ namespace App\Application\Commands\TimeDeposit;
 class ReinvestTimeDepositCommand
 {
     private string $fullName;
-    private float $finalBalance;
     private float $amount;
     private int $days;
     private bool $approve;
 
-    public function __construct(string $fullName, bool $approve, float $initAmount, float $finalBalance, int $days)
+    public function __construct(string $fullName, bool $approve, float $amount, int $days)
     {
         $this->fullName = $fullName;
-        $this->finalBalance = $finalBalance;
-        $this->amount = $initAmount;
+        $this->amount = $amount;
         $this->days = $days;
         $this->approve = $approve;
     }
@@ -26,14 +24,6 @@ class ReinvestTimeDepositCommand
     public function getFullName(): string
     {
         return $this->fullName;
-    }
-
-    /**
-     * @return float
-     */
-    public function getFinalBalance(): float
-    {
-        return $this->finalBalance;
     }
 
     /**
@@ -57,6 +47,6 @@ class ReinvestTimeDepositCommand
      */
     public function isApprove(): bool
     {
-        return $this->approve;
+        return $this->approve = true;
     }
 }

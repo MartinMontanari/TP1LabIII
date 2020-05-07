@@ -42,6 +42,17 @@ class TimeDepositService
 
     private function ReinvestTimeDeposit(ReinvestTimeDepositCommand $command)
     {
-        //TODO -->> $final
+        $days = $command->getDays();
+        $fullName = $command->getFullName();
+        $reinvest = $command->isApprove();
+
+        if($reinvest){
+            $timeDeposits = [$this->calculation->PerformCalculation($command->getAmount(), $days)];
+
+            for($i=1; $i<4; $i++){
+                $timeDeposits[]= $this->calculation->PerformCalculation($timeDeposits[$i-1]->getAmount(),$days);
+            }
+            return new TimeDeposit($fullName,$timeDeposits);
+        }
     }
 }

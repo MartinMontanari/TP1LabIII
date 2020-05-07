@@ -12,7 +12,7 @@ use Throwable;
 class InvalidBodyException extends \Exception
 {
     private array $errorsArray;
-    public function __construct($message = "", $code = 0, Throwable $previous = null)
+    public function __construct($message = ""|[], $code = 0, Throwable $previous = null)
     {
         if(is_array($message)){
             $this->errorsArray = $message;
@@ -20,7 +20,7 @@ class InvalidBodyException extends \Exception
         }
         parent::__construct($message, $code, $previous);
     }
-    public function getArrayMessages() : array{
+    public function getMessagesArray() : array{
         return $this->errorsArray;
     }
 }

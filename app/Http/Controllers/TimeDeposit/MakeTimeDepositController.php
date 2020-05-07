@@ -27,7 +27,7 @@ class MakeTimeDepositController extends Controller
 
     /**
      * @param Request $request
-     * @return View
+     //* @return View
      * @throws InvalidBodyException
      */
     public function execute(Request $request)
@@ -37,7 +37,7 @@ class MakeTimeDepositController extends Controller
             $timeDeposit = $this->service->MakeTimeDeposit($command);
             return view('finalBalance', ["deposit"=>$timeDeposit]);
         }catch(InvalidArgumentException $errors){
-            redirect()->back()->withErrors($errors->getArrayMessages());
+            redirect()->back()->withErrors([$errors]);
         }
     }
 }

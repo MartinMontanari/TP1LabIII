@@ -19,19 +19,19 @@
         <form class="form-group" method="POST" action="{{ route('newTimeDeposit') }}" accept-charset="UTF-8"  enctype="multipart/form-data">
             @csrf
             <label class="form-check-label">Nombre y apellido
-                <input name="fullName" type="text" placeholder="Nombre y apellido" value="{{ old('fullName') }}" required>
+                <input name="fullName" type="text" placeholder="Nombre y apellido" value="{{ old('fullName') }}" >
             </label>
             <br/>
             <label class="form-check-label">Monto a depositar
-                <input name="amount" type="number" placeholder="Monto" value="{{ old('amount') }}"  required>
+                <input name="amount" type="number" placeholder="Monto" value="{{ old('amount') }}"  >
             </label>
             <br/>
             <label class="form-check-label">Días
-                <input type="number" name="days" min="30" placeholder="Días de duración depósito" value="{{ old('days') }}"  required>
+                <input type="number" name="days" min="30" placeholder="Días de duración depósito" value="{{ old('days') }}"  >
             </label>
             <br/>
             <label class="form-check-label">Confirmación de identidad
-                <input name="confirm" type="checkbox" value="true" required>
+                <input name="confirm" type="checkbox" value="true" >
             </label>
             <br/>
             <input class="btn btn-success" type="submit" value="Calcular">

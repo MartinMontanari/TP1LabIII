@@ -5,6 +5,10 @@ namespace App\Exceptions;
 
 use Throwable;
 
+/**
+ * Class InvalidBodyException
+ * @package App\Exceptions
+ */
 class InvalidBodyException extends \Exception
 {
     private array $errorsArray;
@@ -16,7 +20,7 @@ class InvalidBodyException extends \Exception
         }
         parent::__construct($message, $code, $previous);
     }
-    public function getMessages() : array{
+    public function getArrayMessages() : array{
         return $this->errorsArray;
     }
 }

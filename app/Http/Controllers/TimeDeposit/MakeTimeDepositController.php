@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
+/**
+ * Class MakeTimeDepositController
+ * @package App\Http\Controllers\TimeDeposit
+ */
 class MakeTimeDepositController extends Controller
 {
     private TimeDepositAdapter  $adapter;

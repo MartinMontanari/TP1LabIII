@@ -10,6 +10,7 @@
     <body>
     <form class="form-group" method="POST" action="{{ route('reinvestMoney') }}" accept-charset="UTF-8"  enctype="multipart/form-data">
         @csrf
+
         <p>{{  $NewDeposit->getFullName() }}</p><br/>
         <p>{{ $NewDeposit->getAmount() }}</p><br/>
         <p>{{ $NewDeposit->getDays() }}</p>

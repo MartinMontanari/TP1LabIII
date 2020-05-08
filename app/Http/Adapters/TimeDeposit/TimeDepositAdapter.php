@@ -4,6 +4,7 @@
 namespace App\Http\Adapters\TimeDeposit;
 
 
+use App\Application\Commands\TimeDeposit\ReinvestTimeDepositCommand;
 use App\Application\Commands\TimeDeposit\SimpleTimeDepositCommand;
 use App\Exceptions\InvalidBodyException;
 use Illuminate\Http\Request;
@@ -48,12 +49,21 @@ class TimeDepositAdapter
 
         if ($validate->fails()) {
             throw new InvalidBodyException($validate->errors()->getMessages());
-        } else {
+        }
+        $reinvest = $request ->input('reinvest');
+        if($reinvest) {
             return new SimpleTimeDepositCommand(
                 $request->input('fullName'),
                 $request->input('amount'),
                 $request->input('days'),
             );
         }
+//        else{      TODO Terminar ReinvestUseCase
+//            return new ReinvestTimeDepositCommand(
+//                $request->input()
+//
+//            )
+
+//        }
     }
 }

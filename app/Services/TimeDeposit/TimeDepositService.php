@@ -6,9 +6,12 @@ namespace App\Services\TimeDeposit;
 
 use App\Application\Commands\TimeDeposit\ReinvestTimeDepositCommand;
 use App\Application\Commands\TimeDeposit\SimpleTimeDepositCommand;
-use App\Domain\ValueObjects\ReinvestTimeDeposit;
 use App\Domain\ValueObjects\TimeDeposit;
 
+/**
+ * Class TimeDepositService
+ * @package App\Services\TimeDeposit
+ */
 class TimeDepositService
 {
     private CalculationService $calculation;
@@ -23,14 +26,14 @@ class TimeDepositService
 
     /**
      * @param SimpleTimeDepositCommand $command
-     * @return ReinvestTimeDeposit|TimeDeposit
+     * @return TimeDeposit[]|array
      */
-    public function MakeTimeDeposit(SimpleTimeDepositCommand $command)
+    public function MakeTimeDeposit(SimpleTimeDepositCommand $command): array
     {
         if ($command instanceof SimpleTimeDepositCommand) {
-            return $this->DoSimpleTimeDeposit($command);
+            return [$this->DoSimpleTimeDeposit($command)];
         } else if ($command instanceof ReinvestTimeDepositCommand) {
-            return $this->ReinvestTimeDeposit($command);
+            return [$this->ReinvestTimeDeposit($command)];
         }
     }
 
@@ -49,11 +52,16 @@ class TimeDepositService
 
     }
 
+    /**
+     * @param ReinvestTimeDepositCommand $command
+     * @return TimeDeposit
+     */
     private function ReinvestTimeDeposit(ReinvestTimeDepositCommand $command)
     {
         $days = $command->getDays();
         $fullName = $command->getFullName();
         $reinvest = $command->isApprove();
+        $initAmount = $command->getAmount();
 
         if($reinvest){
             $timeDeposits = [$this->calculation->PerformCalculation($command->getAmount(), $days)];
@@ -61,7 +69,7 @@ class TimeDepositService
             for($i=1; $i<4; $i++){
                 $timeDeposits[]= $this->calculation->PerformCalculation($timeDeposits[$i-1]->getAmount(),$days);
             }
-            return new ReinvestTimeDeposit($fullName,$timeDeposits,$days);
+            return new TimeDeposit($fullName, $initAmount, $timeDeposits[], $days);
         }
     }
 }

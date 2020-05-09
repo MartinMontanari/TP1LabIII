@@ -8,14 +8,12 @@ class ReinvestTimeDepositCommand
     private string $fullName;
     private float $amount;
     private int $days;
-    private bool $approve;
 
-    public function __construct(string $fullName, bool $approve, float $amount, int $days)
+    public function __construct(string $fullName, float $amount, int $days)
     {
         $this->fullName = $fullName;
         $this->amount = $amount;
         $this->days = $days;
-        $this->approve = $approve;
     }
 
     /**
@@ -40,13 +38,5 @@ class ReinvestTimeDepositCommand
     public function getDays(): int
     {
         return $this->days;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isApprove(): bool
-    {
-        return $this->approve = true;
     }
 }

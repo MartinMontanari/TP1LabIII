@@ -25,10 +25,10 @@ class TimeDepositService
     }
 
     /**
-     * @param SimpleTimeDepositCommand $command
+     * @param SimpleTimeDepositCommand|ReinvestTimeDepositCommand $command
      * @return TimeDeposit[]|array
      */
-    public function MakeTimeDeposit(SimpleTimeDepositCommand $command): array
+    public function MakeTimeDeposit($command): array
     {
         if ($command instanceof SimpleTimeDepositCommand) {
             return [$this->DoSimpleTimeDeposit($command)];
@@ -54,22 +54,24 @@ class TimeDepositService
 
     /**
      * @param ReinvestTimeDepositCommand $command
-     * @return TimeDeposit
+     * @return TimeDeposit[]
      */
     private function ReinvestTimeDeposit(ReinvestTimeDepositCommand $command)
     {
         $days = $command->getDays();
         $fullName = $command->getFullName();
-        $reinvest = $command->isApprove();
         $initAmount = $command->getAmount();
 
-        if($reinvest){
-            $timeDeposits = [$this->calculation->PerformCalculation($command->getAmount(), $days)];
+        $timeDeposits = [new TimeDeposit($fullName,$initAmount,$this->calculation->PerformCalculation($command->getAmount(), $days),$days)];
 
-            for($i=1; $i<4; $i++){
-                $timeDeposits[]= $this->calculation->PerformCalculation($timeDeposits[$i-1]->getAmount(),$days);
-            }
-            return new TimeDeposit($fullName, $initAmount, $timeDeposits[], $days);
+        for($i=1; $i<4; $i++){
+            $timeDeposits[] = new TimeDeposit(
+                $fullName,
+                $timeDeposits[$i-1]->getFinalBalance(),
+               $this->calculation->PerformCalculation($timeDeposits[$i - 1]->getFinalBalance(), $days),
+                $days);
         }
+        return $timeDeposits;
+
     }
 }

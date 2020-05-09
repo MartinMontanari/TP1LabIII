@@ -18,4 +18,6 @@ Route::get('/', function () {
 });
 
 Route::post('/','TimeDeposit\MakeTimeDepositController@execute')->name('newTimeDeposit');
-Route::post('/finalBalance','TimeDeposit\MakeTimeDepositController@execute')->name('reinvestMoney');
+Route::post('/finalBalanceCalculator','TimeDeposit\ReinvestTimeDepositController@execute')->name('finalDeposits');
+Route::view('/finalBalance','finalBalance')->name('finalBalance');
+Route::view('/finalDeposits', 'finalDeposits')->name('FinalTimeDeposits');

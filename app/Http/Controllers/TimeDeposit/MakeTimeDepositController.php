@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\TimeDeposit;
 
+use App\Domain\ValueObjects\TimeDeposit;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\TimeDeposit\TimeDepositAdapter;
 use App\Http\Controllers\Controller;
 use App\Services\TimeDeposit\TimeDepositService;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
 /**
@@ -31,14 +31,16 @@ class MakeTimeDepositController extends Controller
 
     /**
      * @param Request $request
-     * @return View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|RedirectResponse|\Illuminate\View\View
      */
     public function execute(Request $request)
     {
         try {
             $command = $this->adapter->adapt($request);
             $timeDeposit = $this->service->MakeTimeDeposit($command);
-            return redirect(route('finalBalance'))->with(["NewDeposit"=>$timeDeposit]);
+
+            //return redirect(view('finalBalance')->with(['TimeDeposit',$timeDeposit]));
+            return view('finalBalance',['TimeDeposit'=>$timeDeposit]);
         }catch(InvalidBodyException $errors){
             return redirect()->back()->withErrors($errors->getMessages());
         }

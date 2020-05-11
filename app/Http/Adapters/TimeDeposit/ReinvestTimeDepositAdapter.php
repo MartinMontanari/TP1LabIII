@@ -18,7 +18,6 @@ class ReinvestTimeDepositAdapter
         'fullName' => 'bail|required|alpha|min:6|max:220',
         'amount' => 'bail|required|numeric|min:1000',
         'days' => 'bail|required|integer|min:30',
-        'confirm' => 'bail|required|accepted'
     ];
     /**
      * @var string[]
@@ -34,8 +33,6 @@ class ReinvestTimeDepositAdapter
         'days.required' => 'Debe ingresar la cantidad de días para realizar el cálculo de intereses.',
         'days.min' => 'Debe ingresar un depósito de 30 días como mínimo.',
         'days.integer' => 'Los días ingresados deben ser números enteros',
-        'confirm.accepted' => 'Debe confirmar los permisos antes de continuar.',
-        'confirm.required' => 'Debe confirmar los permisos antes de continuar.'
     ];
 
     /**

@@ -13,15 +13,15 @@
         <form class="form-group" method="POST" action="{{ route('reinvest') }}" accept-charset="UTF-8">
             @csrf
             <label class="form-check-label">Nombre y apellido:
-                <input type="text" name="fullName" value="{{ $TimeDeposit[0]->getFullName() }}"/>
+                <input type="text" name="fullName" value="{{ $TimeDeposit[0]->getFullName() }}" readonly/>
             </label> <br/>
             <p class="form-check-label">Monto inicial: $ {{ round($TimeDeposit[0]->getAmount(),2) }}</p><br/>
-            <label class="form-check-label">Días:
-                <input type="text" name="days" value="{{ $TimeDeposit[0]->getDays() }}"/>
+            <label class="form-check-label">Días del último depósito (puede editarlo):
+                <input type="text" name="days" value="{{ $TimeDeposit[0]->getDays() }}" />
             </label><br/>
             <label class="form-check-label">Balance final:
                 <input class="btn btn-primary btn-block" type="text" name="amount"
-                       value="{{ round($TimeDeposit[0]->getFinalBalance(),2) }}">
+                       value="{{ round($TimeDeposit[0]->getFinalBalance(),2) }}" readonly>
             </label><br/>
             <br/>
             <input class="btn btn-primary btn-block" type="submit" value="Reinvertir">

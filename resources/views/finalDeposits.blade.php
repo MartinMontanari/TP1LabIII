@@ -8,8 +8,12 @@
     <title>Final deposits</title>
 </head>
 <body>
-@foreach($timeDeposits as $timeDeposit)
-    <p>$ {{ $timeDeposit->getFull }}</p></br>
+
+@foreach($TimeDeposit as $timeDeposit)
+    <p>Nombre y apellido: {{ $timeDeposit->getFullName() }} / Días de duración: {{ $timeDeposit->getDays() }}</p><br/>
+    <p>Monto inicial: $ {{ round($timeDeposit->getAmount(),2) }}</p><br/>
+    <p>Monto final: $ {{ round($timeDeposit->getFinalBalance(),2) }}</p><br/>
+    <hr/>
 @endforeach
     <div class="container">
         <div class="align-content-center">

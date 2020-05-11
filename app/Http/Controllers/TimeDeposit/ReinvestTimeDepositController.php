@@ -35,7 +35,7 @@ class ReinvestTimeDepositController extends Controller
         try {
             $command = $this->adapter->adapt($request);
             $timeDeposit = $this->service->MakeTimeDeposit($command);
-            return redirect()->to(route('finalDeposits'))->with(["NewDeposit" => $timeDeposit]);
+            return view('finalDeposits', ["TimeDeposit" => $timeDeposit]);
 
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());

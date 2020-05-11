@@ -33,7 +33,7 @@ class TimeDepositService
         if ($command instanceof SimpleTimeDepositCommand) {
             return [$this->DoSimpleTimeDeposit($command)];
         } else if ($command instanceof ReinvestTimeDepositCommand) {
-            return [$this->ReinvestTimeDeposit($command)];
+            return $this->ReinvestTimeDeposit($command);
         }
     }
 

@@ -39,7 +39,6 @@ class MakeTimeDepositController extends Controller
             $command = $this->adapter->adapt($request);
             $timeDeposit = $this->service->MakeTimeDeposit($command);
 
-            //return redirect(view('finalBalance')->with(['TimeDeposit',$timeDeposit]));
             return view('finalBalance',['TimeDeposit'=>$timeDeposit]);
         }catch(InvalidBodyException $errors){
             return redirect()->back()->withErrors($errors->getMessages());
